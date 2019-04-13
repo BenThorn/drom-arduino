@@ -3,8 +3,12 @@ var board = new five.board();
 
 //bool to trigger when sensor changes
 var hit1 = false;
-//added line to account for multiple boards
-//var boards = new five.Boards(["A", "B"]);
+//added lines to account for multiples
+/*var boards = new five.Boards(["A", "B", "C"]);
+var hit2 = false;
+var hit3 = false;
+*/
+
 
 board.on("ready", function() {
 	
