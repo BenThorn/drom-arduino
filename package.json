@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "johnny-five": "^1.0.0"
+    "johnny-five": "^1.0.0",
+    "robot-js": "^2.0.0",
+    "robotjs": "^0.5.1"
   }
 }
