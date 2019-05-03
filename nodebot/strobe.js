@@ -55,7 +55,6 @@ var nextHitC = false;
 boards.on("ready", function() {
 
   boards.each(function(board){
-   // console.log(board.id);
     var sensor = new five.Sensor({
       pin: "A0",
       board: board
@@ -68,31 +67,33 @@ boards.on("ready", function() {
   
     // Scale the sensor's data from 0-1023 to 0-10 and log changes
     sensor.on("change", function() {
-      console.log(this.fscaleTo(0, 100));
+
+      //console.log(this.fscaleTo(0, 100));
       led.toggle();
 
-      if(board.id === "A") {
-        if(this.fscaleTo(0, 100) > 4 && newHitA) {
+      if(board.port === "COM7") {
+          //console.dir(board.port);
+          if(this.fscaleTo(0, 100) > 4 && newHitA) {
           robot.typeString(" ");
           nextHitA = false;
           newHitA = false;
           numHitsA++;
-          console.log(numHitsA + " HITS -- BOARD: " + board.id);
-        }                       
+          console.log(numHitsA + " HITS -- BOARD: " + board.port);
+        }
       
         if(this.fscaleTo(0, 100) === 0) { 
           led.off();       
           nextHitA = false;
           newHitA = true;
         }
-      } else if(board.id === "B") {
+      } else if(board.port === "COM5") {
           if(this.fscaleTo(0, 100) > 4 && newHitB) {
-            console.log(this.fscaleTo(0, 100));
-            robot.typeString("v");
+           // console.log(this.fscaleTo(0, 100));
+            robot.typeString("b");
             nextHitB = false;
             newHitB = false;
             numHitsB++;
-            console.log(numHitsB + " HITS -- BOARD: " + board.id);
+            console.log(numHitsB + " HITS -- BOARD: " + board.port);
           }                       
         
           if(this.fscaleTo(0, 100) === 0) {  
@@ -100,14 +101,13 @@ boards.on("ready", function() {
             nextHitB = false;
             newHitB = true;
           }
-      } else if(board.id === "C") {
+      } else if(board.port === "COM6") {
           if(this.fscaleTo(0, 100) > 4 && newHitC) {
-            console.log(this.fscaleTo(0, 100));
-            robot.typeString("b");
+            robot.typeString("v");
             nextHitC = false;
             newHitC = false;
             numHitsC++;
-            console.log(numHitsC + " HITS -- BOARD: " + board.id);
+            console.log(numHitsC + " HITS -- BOARD: " + board.port);
           }                       
         
           if(this.fscaleTo(0, 100) === 0) {        
